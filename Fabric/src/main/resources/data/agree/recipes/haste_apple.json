@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "tag": "c:rubies"
+        },
+        {
+            "item": "minecraft:golden_apple"
+        }
+    ],
+    "result": {
+        "item": "agree:haste_apple",
+        "count": 1
+    }
+}
