@@ -4,7 +4,9 @@
 package com.skniro.agree.recipe;
 
 import com.skniro.agree.item.Apples.AppleFoodComponents;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.inventory.CraftingContainer;
@@ -12,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SuspiciousStewItem;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
+import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
@@ -24,10 +27,10 @@ extends CustomRecipe {
     }
 
     @Override
-    public boolean matches(CraftingContainer recipeInputInventory, Level world) {
+    public boolean matches(CraftingInput recipeInputInventory, Level world) {
         boolean bl = false;
         boolean bl2 = false;
-        for (int i = 0; i < recipeInputInventory.getContainerSize(); ++i) {
+        for (int i = 0; i < recipeInputInventory.size(); ++i) {
             ItemStack itemStack = recipeInputInventory.getItem(i);
             if (itemStack.isEmpty()) continue;
             if (itemStack.is(ItemTags.SMALL_FLOWERS) && !bl) {
@@ -44,14 +47,17 @@ extends CustomRecipe {
     }
 
     @Override
-    public ItemStack assemble(CraftingContainer recipeInputInventory,  RegistryAccess dynamicRegistryManager) {
+    public ItemStack assemble(CraftingInput recipeInputInventory,  HolderLookup.Provider dynamicRegistryManager) {
         ItemStack itemStack = new ItemStack(AppleFoodComponents.SUSPICIOUS_APPLE.get(), 1);
-        for (int i = 0; i < recipeInputInventory.getContainerSize(); ++i) {
-            SuspiciousEffectHolder suspiciousAppleIngredient;
-            ItemStack itemStack2 = recipeInputInventory.getItem(i);
-            if (itemStack2.isEmpty() || (suspiciousAppleIngredient = SuspiciousEffectHolder.tryGet(itemStack2.getItem())) == null) continue;
-            SuspiciousStewItem.saveMobEffects(itemStack, suspiciousAppleIngredient.getSuspiciousEffects());
-            break;
+        for (int i = 0; i < recipeInputInventory.size(); ++i) {
+            ItemStack itemstack1 = recipeInputInventory.getItem(i);
+            if (!itemstack1.isEmpty()) {
+                SuspiciousEffectHolder suspiciouseffectholder = SuspiciousEffectHolder.tryGet(itemstack1.getItem());
+                if (suspiciouseffectholder != null) {
+                    itemStack.set(DataComponents.SUSPICIOUS_STEW_EFFECTS, suspiciouseffectholder.getSuspiciousEffects());
+                    break;
+                }
+            }
         }
         return itemStack;
     }

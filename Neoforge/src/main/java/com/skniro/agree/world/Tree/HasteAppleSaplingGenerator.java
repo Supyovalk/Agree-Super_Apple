@@ -5,7 +5,6 @@ import net.minecraft.world.level.block.grower.TreeGrower;
 
 import java.util.Optional;
 
-
 public class HasteAppleSaplingGenerator {
     public static final TreeGrower HasteAppleSapling =
             new TreeGrower("hasteapplesapling", 0f, Optional.empty(),
@@ -14,4 +13,4 @@ public class HasteAppleSaplingGenerator {
                     Optional.empty(),
                     Optional.empty(),
                     Optional.empty());
-}
+    }

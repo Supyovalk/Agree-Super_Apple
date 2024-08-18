@@ -2,91 +2,64 @@ package com.skniro.agree.item.init;
 
 import com.skniro.agree.item.Gemstone;
 import net.minecraft.Util;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.LazyLoadedValue;
-import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.crafting.Ingredient;
 
-
 import java.util.EnumMap;
+import java.util.List;
 import java.util.function.Supplier;
 
-public enum AgreeArmorMaterials implements StringRepresentable, ArmorMaterial {
-    Ruby("ruby", 35, Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
+public class AgreeArmorMaterials {
+    public static final Holder<ArmorMaterial> Ruby = register("ruby", Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
         map.put(ArmorItem.Type.BOOTS, 3);
         map.put(ArmorItem.Type.LEGGINGS, 6);
         map.put(ArmorItem.Type.CHESTPLATE, 8);
         map.put(ArmorItem.Type.HELMET, 3);
-    }), 25, SoundEvents.ARMOR_EQUIP_DIAMOND, 3.0F, 0.1F, () -> {
-        return Ingredient.of(Gemstone.RUBY.get());
-    });
+        map.put(ArmorItem.Type.BODY, 11);
+    }), 25, SoundEvents.ARMOR_EQUIP_DIAMOND, 3.0F, 0.1F, () -> Ingredient.of(Gemstone.RUBY.get()));
 
-    public static final StringRepresentable.EnumCodec<ArmorMaterials> CODEC = StringRepresentable.fromEnum(ArmorMaterials::values);
-    private static final EnumMap<ArmorItem.Type, Integer> BASE_DURABILITY = Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
-        map.put(ArmorItem.Type.BOOTS, 13);
-        map.put(ArmorItem.Type.LEGGINGS, 15);
-        map.put(ArmorItem.Type.CHESTPLATE, 16);
-        map.put(ArmorItem.Type.HELMET, 11);
-    });
-    private final String name;
-    private final int durabilityMultiplier;
-    private final EnumMap<ArmorItem.Type, Integer> protectionAmounts;
-    private final int enchantability;
-    private final SoundEvent equipSound;
-    private final float toughness;
-    private final float knockbackResistance;
-    private final LazyLoadedValue<Ingredient> repairIngredientSupplier;
 
-    private AgreeArmorMaterials(String name, int durabilityMultiplier, EnumMap<ArmorItem.Type, Integer> protectionAmounts, int enchantability, SoundEvent equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredientSupplier) {
-        this.name = name;
-        this.durabilityMultiplier = durabilityMultiplier;
-        this.protectionAmounts = protectionAmounts;
-        this.enchantability = enchantability;
-        this.equipSound = equipSound;
-        this.toughness = toughness;
-        this.knockbackResistance = knockbackResistance;
-        this.repairIngredientSupplier = new LazyLoadedValue(repairIngredientSupplier);
-    }
-    @Override
-    public int getDurabilityForType(ArmorItem.Type type) {
-        return (Integer)BASE_DURABILITY.get(type) * this.durabilityMultiplier;
+    private static Holder<ArmorMaterial> register(
+            String p_334359_,
+            EnumMap<ArmorItem.Type, Integer> p_329993_,
+            int p_332696_,
+            Holder<SoundEvent> p_333975_,
+            float p_329381_,
+            float p_334853_,
+            Supplier<Ingredient> p_333678_
+    ) {
+        List<ArmorMaterial.Layer> list = List.of(new ArmorMaterial.Layer(ResourceLocation.withDefaultNamespace(p_334359_)));
+        return register(p_334359_, p_329993_, p_332696_, p_333975_, p_329381_, p_334853_, p_333678_, list);
     }
 
-    @Override
-    public int getDefenseForType(ArmorItem.Type type) {
-        return (Integer)this.protectionAmounts.get(type);
-    }
-    @Override
-    public int getEnchantmentValue() {
-        return this.enchantability;
-    }
-    @Override
-    public SoundEvent getEquipSound() {
-        return this.equipSound;
-    }
-    @Override
-    public Ingredient getRepairIngredient() {
-        return (Ingredient)this.repairIngredientSupplier.get();
-    }
-    @Override
-    public String getName() {
-        return this.name;
-    }
-    @Override
-    public float getToughness() {
-        return this.toughness;
-    }
-    @Override
-    public float getKnockbackResistance() {
-        return this.knockbackResistance;
-    }
-    @Override
-    public String getSerializedName() {
-        return this.name;
+    private static Holder<ArmorMaterial> register(
+            String p_332406_,
+            EnumMap<ArmorItem.Type, Integer> p_331524_,
+            int p_331490_,
+            Holder<SoundEvent> p_331648_,
+            float p_327988_,
+            float p_328616_,
+            Supplier<Ingredient> p_334412_,
+            List<ArmorMaterial.Layer> p_330855_
+    ) {
+        EnumMap<ArmorItem.Type, Integer> enummap = new EnumMap<>(ArmorItem.Type.class);
+
+        for (ArmorItem.Type armoritem$type : ArmorItem.Type.values()) {
+            enummap.put(armoritem$type, p_331524_.get(armoritem$type));
+        }
+
+        return Registry.registerForHolder(
+                BuiltInRegistries.ARMOR_MATERIAL,
+                ResourceLocation.withDefaultNamespace(p_332406_),
+                new ArmorMaterial(enummap, p_331490_, p_331648_, p_334412_, p_330855_, p_327988_, p_328616_)
+        );
     }
 }
 

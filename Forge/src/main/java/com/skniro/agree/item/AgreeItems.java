@@ -15,15 +15,16 @@ public class AgreeItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Agree.MOD_ID);
     //Tool
     public static final RegistryObject<Item> RUBY_SWORD = registerItem("ruby_sword",
-            ()-> new SwordItem(AgreeToolMaterials.RUBY, 3, -2.4F, new Item.Properties()));
+            ()-> new SwordItem(AgreeToolMaterials.RUBY, new Item.Properties().attributes(SwordItem.createAttributes(AgreeToolMaterials.RUBY, 3, -2.4F))));
     public static final RegistryObject<Item> RUBY_SHOVEL = registerItem("ruby_shovel",
-            ()-> new ShovelItem(AgreeToolMaterials.RUBY, 1.5F, -3.0F, new Item.Properties()));
+            ()-> new ShovelItem(AgreeToolMaterials.RUBY, new Item.Properties().attributes(ShovelItem.createAttributes(AgreeToolMaterials.RUBY, 2, -3.0F))));
     public static final RegistryObject<Item> RUBY_PICKAXE = registerItem("ruby_pickaxe",
-            ()-> new PickaxeItem(AgreeToolMaterials.RUBY, 1, -2.8F, new Item.Properties()));
+            ()-> new PickaxeItem(AgreeToolMaterials.RUBY, new Item.Properties().attributes(PickaxeItem.createAttributes(AgreeToolMaterials.RUBY, 1, -2.8F))));
     public static final RegistryObject<Item> RUBY_AXE = registerItem("ruby_axe",
-            ()-> new AxeItem(AgreeToolMaterials.RUBY, 5.0F, -3.0F, new Item.Properties()));
+            ()-> new AxeItem(AgreeToolMaterials.RUBY, new Item.Properties().attributes(AxeItem.createAttributes(AgreeToolMaterials.RUBY, 5, -3.0F))));
     public static final RegistryObject<Item> RUBY_HOE = registerItem("ruby_hoe",
-            ()-> new HoeItem(AgreeToolMaterials.RUBY, -3, 0.0F, new Item.Properties()));
+            ()-> new HoeItem(AgreeToolMaterials.RUBY, new Item.Properties().attributes(HoeItem.createAttributes(AgreeToolMaterials.RUBY, -3, 0.0F))));
+
 
     //Armor
     public static final RegistryObject<Item> RUBY_HELMET = registerItem("ruby_helmet",

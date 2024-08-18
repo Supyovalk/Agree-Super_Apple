@@ -13,4 +13,4 @@ public class StrengthAppleSaplingGenerator {
                     Optional.empty(),
                     Optional.empty(),
                     Optional.empty());
-}
+    }

@@ -3,6 +3,7 @@ package com.skniro.agree.item;
 import com.skniro.agree.Agree;
 import com.skniro.agree.block.AgreeBlocks;
 import com.skniro.agree.item.init.SuspiciousAppleItem;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
@@ -11,6 +12,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -71,20 +73,24 @@ public class ModCreativeModeTabs {
                         pOutput.accept(RUBY_PICKAXE.get());
                         pOutput.accept(RUBY_SHOVEL.get());
                         pOutput.accept(RUBY_HOE.get());
-                        //addSuspiciousApples(pOutput, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                        addSuspiciousApples(pOutput, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                     })
                     .build());
 
     private static void addSuspiciousApples(CreativeModeTab.Output entries, CreativeModeTab.TabVisibility visibility) {
         List<SuspiciousEffectHolder> list = SuspiciousEffectHolder.getAllEffectHolders();
-        Set<ItemStack> set = ItemStackLinkedSet.createTypeAndTagSet();
-        for (SuspiciousEffectHolder suspiciousStewIngredient : list) {
+        Set<ItemStack> set = ItemStackLinkedSet.createTypeAndComponentsSet();
+        Iterator var4 = list.iterator();
+
+        while(var4.hasNext()) {
+            SuspiciousEffectHolder suspiciouseffectholder = (SuspiciousEffectHolder)var4.next();
             ItemStack itemStack = new ItemStack(SUSPICIOUS_APPLE.get());
-            SuspiciousStewItem.saveMobEffects(itemStack, suspiciousStewIngredient.getSuspiciousEffects());
+            itemStack.set(DataComponents.SUSPICIOUS_STEW_EFFECTS, suspiciouseffectholder.getSuspiciousEffects());
             set.add(itemStack);
         }
         entries.acceptAll(set, visibility);
     }
+
 
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);

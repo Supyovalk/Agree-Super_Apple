@@ -24,7 +24,7 @@ public class Gemstone_ore {
     public static final Supplier<Block> RUBY_ORE = registerBlock("ruby_ore",
             ()-> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3.0F, 3.0F)), ModCreativeModeTabs.Agree_Group);
     public static final Supplier<Block> DEEPSLATE_RUBY_ORE = registerBlock("deepslate_ruby_ore",
-            ()-> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(RUBY_ORE.get()).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE)), ModCreativeModeTabs.Agree_Group);
+            ()-> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofLegacyCopy(RUBY_ORE.get()).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE)), ModCreativeModeTabs.Agree_Group);
 
     private static <T extends Block> Supplier<T> registerBlockWithoutItem(String name, Supplier<T> block) {
         Supplier<T> toReturn = BLOCKS.register(name, block);

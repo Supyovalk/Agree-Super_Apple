@@ -13,4 +13,4 @@ public class JumpBoostAppleSaplingGenerator {
                     Optional.empty(),
                     Optional.empty(),
                     Optional.empty());
-}
+    }

@@ -10,11 +10,11 @@ import net.minecraft.util.Identifier;
 
 public class AgreeItems {
     //Tool
-    public static final Item RUBY_SWORD = registerItem("ruby_sword", (new SwordItem(AgreeToolMaterials.RUBY, new Item.Settings())));
-    public static final Item RUBY_SHOVEL = registerItem("ruby_shovel", (new ShovelItem(AgreeToolMaterials.RUBY, new Item.Settings())));
-    public static final Item RUBY_PICKAXE = registerItem("ruby_pickaxe", (new PickaxeItem(AgreeToolMaterials.RUBY, new Item.Settings())));
-    public static final Item RUBY_AXE = registerItem("ruby_axe", (new AxeItem(AgreeToolMaterials.RUBY, new Item.Settings())));
-    public static final Item RUBY_HOE = registerItem("ruby_hoe", (new HoeItem(AgreeToolMaterials.RUBY, new Item.Settings())));
+    public static final Item RUBY_SWORD = registerItem("ruby_sword", (new SwordItem(AgreeToolMaterials.RUBY, new Item.Settings().attributeModifiers(SwordItem.createAttributeModifiers(AgreeToolMaterials.RUBY, 3, -2.4F)))));
+    public static final Item RUBY_SHOVEL = registerItem("ruby_shovel", (new ShovelItem(AgreeToolMaterials.RUBY, new Item.Settings().attributeModifiers(ShovelItem.createAttributeModifiers(AgreeToolMaterials.RUBY, 2, -3.0F)))));
+    public static final Item RUBY_PICKAXE = registerItem("ruby_pickaxe", (new PickaxeItem(AgreeToolMaterials.RUBY, new Item.Settings().attributeModifiers(PickaxeItem.createAttributeModifiers(AgreeToolMaterials.RUBY, 1, -2.8F)))));
+    public static final Item RUBY_AXE = registerItem("ruby_axe", (new AxeItem(AgreeToolMaterials.RUBY, new Item.Settings().attributeModifiers(AxeItem.createAttributeModifiers(AgreeToolMaterials.RUBY, 5, -3.0F)))));
+    public static final Item RUBY_HOE = registerItem("ruby_hoe", (new HoeItem(AgreeToolMaterials.RUBY, new Item.Settings().attributeModifiers(HoeItem.createAttributeModifiers(AgreeToolMaterials.RUBY, -3, 0.0F)))));
 
     //Armor
     public static final Item RUBY_HELMET = registerItem("ruby_helmet", (new ArmorItem(AgreeArmorMaterials.Ruby, ArmorItem.Type.HELMET, new Item.Settings())));

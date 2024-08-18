@@ -2,15 +2,13 @@ package com.skniro.agree.item.Apples;
 
 import com.skniro.agree.Agree;
 import com.skniro.agree.item.init.SuspiciousAppleItem;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.EnchantedGoldenAppleItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.*;
 
 import java.util.function.Supplier;
@@ -27,8 +25,8 @@ public class AppleFoodComponents {
                     (new FoodProperties
                     .Builder()
                     .nutrition(6)
-                    .saturationMod(0.3f)
-                    .alwaysEat()
+                    .saturationModifier(0.3f)
+                    .alwaysEdible()
                     .effect
                             (new MobEffectInstance(MobEffects.DIG_SPEED,
                                     6000,
@@ -48,8 +46,8 @@ public class AppleFoodComponents {
                             (new FoodProperties
                                     .Builder()
                                     .nutrition(6)
-                                    .saturationMod(0.3f)
-                                    .alwaysEat()
+                                    .saturationModifier(0.3f)
+                                    .alwaysEdible()
                                     .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,6000,2),1.0F)
                                     .build()
                             )
@@ -65,8 +63,8 @@ public class AppleFoodComponents {
                             (new FoodProperties
                                     .Builder()
                                     .nutrition(6)
-                                    .saturationMod(0.3f)
-                                    .alwaysEat()
+                                    .saturationModifier(0.3f)
+                                    .alwaysEdible()
                                     .effect(new MobEffectInstance(MobEffects.HEALTH_BOOST,3000,1),1.0F)
                                     .effect(new MobEffectInstance(MobEffects.REGENERATION,300,2),1.0F)
                                     .build()
@@ -83,8 +81,8 @@ public class AppleFoodComponents {
                             (new FoodProperties
                                     .Builder()
                                     .nutrition(6)
-                                    .saturationMod(0.3f)
-                                    .alwaysEat()
+                                    .saturationModifier(0.3f)
+                                    .alwaysEdible()
                                     .effect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE,6000,2),1.0F)
                                     .build()
                             )
@@ -100,8 +98,8 @@ public class AppleFoodComponents {
                             (new FoodProperties
                                     .Builder()
                                     .nutrition(6)
-                                    .saturationMod(0.3f)
-                                    .alwaysEat()
+                                    .saturationModifier(0.3f)
+                                    .alwaysEdible()
                                     .effect(new MobEffectInstance(MobEffects.HERO_OF_THE_VILLAGE,6000,2),1.0F)
                                     .build()
                             )
@@ -117,8 +115,8 @@ public class AppleFoodComponents {
                             (new FoodProperties
                                     .Builder()
                                     .nutrition(6)
-                                    .saturationMod(0.3f)
-                                    .alwaysEat()
+                                    .saturationModifier(0.3f)
+                                    .alwaysEdible()
                                     .effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST,6000,2),1.0F)
                                     .build()
                             )
@@ -134,8 +132,8 @@ public class AppleFoodComponents {
                             (new FoodProperties
                                     .Builder()
                                     .nutrition(6)
-                                    .saturationMod(0.3f)
-                                    .alwaysEat()
+                                    .saturationModifier(0.3f)
+                                    .alwaysEdible()
                                     .effect(new MobEffectInstance(MobEffects.NIGHT_VISION,6000,2),1.0F)
                                     .build()
                             )
@@ -151,23 +149,24 @@ public class AppleFoodComponents {
                             (new FoodProperties
                                     .Builder()
                                     .nutrition(6)
-                                    .saturationMod(0.3f)
-                                    .alwaysEat()
+                                    .saturationModifier(0.3f)
+                                    .alwaysEdible()
                                     .effect(new MobEffectInstance(MobEffects.JUMP, 6000,1),1.0F)
                                     .build()
                             )
             ));
     public static final RegistryObject<Item> SUPER_APPLE = registerItem(
             "super_apple",
-            ()->    new EnchantedGoldenAppleItem(
+            ()->    new Item(
                     (
                     new Item.Properties()
                             .rarity(Rarity.EPIC)
+                            .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)
                             .food(
                                     new FoodProperties.Builder()
                                             .nutrition(8)
-                                            .saturationMod(0.6f)
-                                            .alwaysEat()
+                                            .saturationModifier(0.6f)
+                                            .alwaysEdible()
                                             .effect(new MobEffectInstance(MobEffects.DIG_SPEED,12000,2),1.0F)
                                             .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,12000,2),1.0F)
                                             .effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST,12000,2),1.0F)
@@ -184,20 +183,20 @@ public class AppleFoodComponents {
             ));
     public static final RegistryObject<Item> SUSPICIOUS_APPLE = registerItem(
             "suspicious_apple",
-            ()->    new Item(
+            ()->    new SuspiciousAppleItem(
                     new Item
                     .Properties()
                     .food(
                             AppleFoodComponents
                                     .createStew(6)
-                                    .alwaysEat()
+                                    .alwaysEdible()
                                     .build()
                     )
     ));
 
 
     private static FoodProperties.Builder createStew(int hunger) {
-        return new FoodProperties.Builder().nutrition(hunger).saturationMod(0.6f);
+        return new FoodProperties.Builder().nutrition(hunger).saturationModifier(0.6f);
     }
     private static <T extends Item> RegistryObject<T> registerItem(String name, Supplier<T> item) {
         RegistryObject<T> toReturn = ITEMS.register(name, item);

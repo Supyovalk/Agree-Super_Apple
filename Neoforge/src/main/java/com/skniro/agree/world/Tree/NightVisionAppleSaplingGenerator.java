@@ -13,4 +13,4 @@ public class NightVisionAppleSaplingGenerator {
                     Optional.empty(),
                     Optional.empty(),
                     Optional.empty());
-}
+    }

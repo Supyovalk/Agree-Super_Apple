@@ -16,7 +16,6 @@ import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-
 import java.util.function.Supplier;
 
 public class AgreeBlocks {
@@ -28,21 +27,21 @@ public class AgreeBlocks {
 
     //SAPLING
     public static final Supplier<Block> HASTE_APPLE_SAPLING = registerBlock("haste_apple_sapling",
-            ()-> new SaplingBlock(HasteAppleSaplingGenerator.HasteAppleSapling, BlockBehaviour.Properties.ofLegacyCopy(Blocks.OAK_SAPLING)), ModCreativeModeTabs.Agree_Group);
+            ()-> new SaplingBlock(HasteAppleSaplingGenerator.HasteAppleSapling, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)), ModCreativeModeTabs.Agree_Group);
     public static final Supplier<Block> SPEED_APPLE_SAPLING = registerBlock("speed_apple_sapling",
-            ()-> new SaplingBlock(SpeedAppleSaplingGenerator.SpeedAppleSapling, BlockBehaviour.Properties.ofLegacyCopy(Blocks.OAK_SAPLING)), ModCreativeModeTabs.Agree_Group);
+            ()-> new SaplingBlock(SpeedAppleSaplingGenerator.SpeedAppleSapling, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)), ModCreativeModeTabs.Agree_Group);
     public static final Supplier<Block> HEALTH_BOOST_SAPLING = registerBlock("health_boost_apple_sapling",
-            ()-> new SaplingBlock(HealthBoostAppleSaplingGenerator.HealthBoostAppleSapling, BlockBehaviour.Properties.ofLegacyCopy(Blocks.OAK_SAPLING)), ModCreativeModeTabs.Agree_Group);
+            ()-> new SaplingBlock(HealthBoostAppleSaplingGenerator.HealthBoostAppleSapling, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)), ModCreativeModeTabs.Agree_Group);
     public static final Supplier<Block> FIRE_RESISTANCE_SAPLING = registerBlock("fire_resistance_apple_sapling",
-            ()-> new SaplingBlock(FireResistanceAppleSaplingGenerator.FireResistanceApple, BlockBehaviour.Properties.ofLegacyCopy(Blocks.OAK_SAPLING)), ModCreativeModeTabs.Agree_Group);
+            ()-> new SaplingBlock(FireResistanceAppleSaplingGenerator.FireResistanceApple, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)), ModCreativeModeTabs.Agree_Group);
     public static final Supplier<Block> HERO_VILLAGE_SAPLING = registerBlock("village_hero_apple_sapling",
-            ()-> new SaplingBlock(VillageHeroAppleSaplingGenerator.VillageHeroSapling, BlockBehaviour.Properties.ofLegacyCopy(Blocks.OAK_SAPLING)), ModCreativeModeTabs.Agree_Group);
+            ()-> new SaplingBlock(VillageHeroAppleSaplingGenerator.VillageHeroSapling, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)), ModCreativeModeTabs.Agree_Group);
     public static final Supplier<Block> STRENGTH_SAPLING = registerBlock("strength_apple_sapling",
-            ()-> new SaplingBlock(StrengthAppleSaplingGenerator.StrengthAppleSapling, BlockBehaviour.Properties.ofLegacyCopy(Blocks.OAK_SAPLING)), ModCreativeModeTabs.Agree_Group);
+            ()-> new SaplingBlock(StrengthAppleSaplingGenerator.StrengthAppleSapling, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)), ModCreativeModeTabs.Agree_Group);
     public static final Supplier<Block> NIGHT_VISION_SAPLING = registerBlock("night_vision_sapling",
-            ()-> new SaplingBlock(NightVisionAppleSaplingGenerator.NightVisionAppleSapling, BlockBehaviour.Properties.ofLegacyCopy(Blocks.OAK_SAPLING)), ModCreativeModeTabs.Agree_Group);
+            ()-> new SaplingBlock(NightVisionAppleSaplingGenerator.NightVisionAppleSapling, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)), ModCreativeModeTabs.Agree_Group);
     public static final Supplier<Block> JUMP_BOOST_SAPLING = registerBlock("jump_boost_sapling",
-            ()-> new SaplingBlock(JumpBoostAppleSaplingGenerator.JumpBoostAppleSapling, BlockBehaviour.Properties.ofLegacyCopy(Blocks.OAK_SAPLING)), ModCreativeModeTabs.Agree_Group);
+            ()-> new SaplingBlock(JumpBoostAppleSaplingGenerator.JumpBoostAppleSapling, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)), ModCreativeModeTabs.Agree_Group);
 
     //LEAVES
     public static final Supplier<Block> HASTE_APPLE_LEAVES =registerBlock("haste_apple_leave",

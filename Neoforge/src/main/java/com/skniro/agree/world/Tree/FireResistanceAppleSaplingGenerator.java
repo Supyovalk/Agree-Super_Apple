@@ -13,4 +13,4 @@ public class FireResistanceAppleSaplingGenerator {
                     Optional.empty(),
                     Optional.empty(),
                     Optional.empty());
-}
+    }

@@ -1,15 +1,8 @@
 package com.skniro.agree.world;
 
-import com.skniro.agree.Agree;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.levelgen.placement.*;
 
-
 import java.util.List;
-import java.util.function.Predicate;
-
-import static com.skniro.agree.Agree.MOD_ID;
 
 public class OreBiomeModifications {
 

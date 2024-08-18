@@ -3,7 +3,7 @@ package com.skniro.agree.conifg;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class AgreeConfig {
-    public static final ForgeConfigSpec GENERAL_SPEC;
+/*    public static final ForgeConfigSpec GENERAL_SPEC;
 
     static {
         ForgeConfigSpec.Builder configBuilder = new ForgeConfigSpec.Builder();
@@ -16,6 +16,6 @@ public class AgreeConfig {
         Enchantment_Module = builder.comment("Disable Enchantment Module.")
                 .define("Enable Enchantment Module",true);
 
-    }
+    }*/
 
 }

@@ -1,8 +1,5 @@
 package com.skniro.agree.client;
 
-import com.skniro.agree.Agree;
-import com.skniro.agree.block.AgreeBlocks;
-
 
 public class AgreeClient{
     /*@Override

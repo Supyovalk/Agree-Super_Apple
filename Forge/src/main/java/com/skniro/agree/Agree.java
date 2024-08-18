@@ -28,7 +28,7 @@ public class Agree {
 
     public Agree() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, AgreeConfig.GENERAL_SPEC, "agree_config.toml");
+        //ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, AgreeConfig.GENERAL_SPEC, "agree_config.toml");
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 

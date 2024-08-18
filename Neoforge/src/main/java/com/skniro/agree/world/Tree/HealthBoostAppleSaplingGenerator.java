@@ -14,4 +14,4 @@ public class HealthBoostAppleSaplingGenerator {
                     Optional.empty(),
                     Optional.empty());
 
-}
+    }
