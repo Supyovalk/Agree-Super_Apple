@@ -25,6 +25,8 @@ public class AgreeArmorMaterials {
         map.put(ArmorItem.Type.BODY, 11);
     }), 25, SoundEvents.ARMOR_EQUIP_DIAMOND, 3.0F, 0.1F, () -> Ingredient.of(Gemstone.RUBY.get()));
 
+    public static final int Ruby_DURABILITY_MULTIPLIER = 37;
+
 
     private static Holder<ArmorMaterial> register(
             String p_334359_,

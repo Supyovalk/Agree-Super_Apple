@@ -27,13 +27,13 @@ public class AgreeItems {
 
     //Armor
     public static final Supplier<Item> RUBY_HELMET = registerItem("ruby_helmet",
-            ()-> new ArmorItem(AgreeArmorMaterials.Ruby, ArmorItem.Type.HELMET, new Item.Properties()));
+            ()-> new ArmorItem(AgreeArmorMaterials.Ruby, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(AgreeArmorMaterials.Ruby_DURABILITY_MULTIPLIER))));
     public static final Supplier<Item> RUBY_CHESTPLATE = registerItem("ruby_chestplate",
-            ()-> new ArmorItem(AgreeArmorMaterials.Ruby, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+            ()-> new ArmorItem(AgreeArmorMaterials.Ruby, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(AgreeArmorMaterials.Ruby_DURABILITY_MULTIPLIER))));
     public static final Supplier<Item> RUBY_LEGGINGS = registerItem("ruby_leggings",
-            ()-> new ArmorItem(AgreeArmorMaterials.Ruby, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+            ()-> new ArmorItem(AgreeArmorMaterials.Ruby, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(AgreeArmorMaterials.Ruby_DURABILITY_MULTIPLIER))));
     public static final Supplier<Item> RUBY_BOOTS = registerItem("ruby_boots",
-            ()-> new ArmorItem(AgreeArmorMaterials.Ruby, ArmorItem.Type.BOOTS, new Item.Properties()));
+            ()-> new ArmorItem(AgreeArmorMaterials.Ruby, ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(AgreeArmorMaterials.Ruby_DURABILITY_MULTIPLIER))));
 
     private static <T extends Item> Supplier<T> registerItem(String name, Supplier<T> item) {
         Supplier<T> toReturn = ITEMS.register(name, item);

@@ -31,7 +31,7 @@ public class AgreeArmorMaterials
                 return Ingredient.ofItems(new ItemConvertible[]{Gemstone.RUBY});
     });
 
-
+    public static final int Ruby_DURABILITY_MULTIPLIER = 37;
 
     private static RegistryEntry<ArmorMaterial> register(String id, EnumMap<ArmorItem.Type, Integer> defense, int enchantability, RegistryEntry<SoundEvent> equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient) {
         List<ArmorMaterial.Layer> list = List.of(new ArmorMaterial.Layer(Identifier.ofVanilla(id)));
