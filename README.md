@@ -20,4 +20,5 @@ Submitting translations for Super Apple can be done via our [Crowdin page](https
 This project is licensed under MIT.
 
 ## Mod Life Cycle
-[LifeCycle Web](https://lifecycle.sttsakara.top/)
+[LifeCycle Web](https://lifecycle.skniro.org/)
+
