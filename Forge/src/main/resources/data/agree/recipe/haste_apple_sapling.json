@@ -10,6 +10,7 @@
     }
   ],
   "result": {
-    "item": "agree:haste_apple_sapling"
+    "id": "agree:haste_apple_sapling",
+    "count": 1
   }
 }

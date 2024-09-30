@@ -10,6 +10,7 @@
     }
   ],
   "result": {
-    "item": "agree:jump_boost_sapling"
+    "id": "agree:jump_boost_sapling",
+    "count": 1
   }
 }

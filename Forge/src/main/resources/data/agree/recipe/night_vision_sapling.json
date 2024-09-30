@@ -10,6 +10,7 @@
     }
   ],
   "result": {
-    "item": "agree:night_vision_sapling"
+    "id": "agree:night_vision_sapling",
+    "count": 1
   }
 }

@@ -10,6 +10,7 @@
     }
   ],
   "result": {
-    "item": "agree:fire_resistance_apple_sapling"
+    "id": "agree:fire_resistance_apple_sapling",
+    "count": 1
   }
 }

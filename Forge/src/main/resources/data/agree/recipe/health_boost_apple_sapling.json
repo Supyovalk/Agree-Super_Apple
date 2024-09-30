@@ -10,6 +10,7 @@
     }
   ],
   "result": {
-    "item": "agree:health_boost_apple_sapling"
+    "id": "agree:health_boost_apple_sapling",
+    "count": 1
   }
 }

@@ -11,7 +11,8 @@
     "b b"
   ],
   "result": {
-    "item": "agree:ruby_helmet"
+    "id": "agree:ruby_helmet",
+    "count": 1
   },
   "show_notification": true
 }

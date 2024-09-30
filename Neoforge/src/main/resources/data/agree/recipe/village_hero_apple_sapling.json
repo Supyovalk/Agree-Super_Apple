@@ -10,6 +10,7 @@
     }
   ],
   "result": {
-    "item": "agree:village_hero_apple_sapling"
+    "id": "agree:village_hero_apple_sapling",
+    "count": 1
   }
 }
