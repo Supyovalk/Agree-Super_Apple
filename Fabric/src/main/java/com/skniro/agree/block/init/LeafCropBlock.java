@@ -32,29 +32,38 @@ import net.minecraft.world.event.GameEvent;
 import java.util.OptionalInt;
 
 public class LeafCropBlock extends Block {
-    public static final IntProperty AGE;
-    private static final VoxelShape SMALL_SHAPE;
-    private static final VoxelShape LARGE_SHAPE;
+    public static final IntProperty AGE = Properties.AGE_2;
+    public static final IntProperty DISTANCE = Properties.DISTANCE_1_7;
+    private static final VoxelShape SMALL_SHAPE = Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
+    private static final VoxelShape LARGE_SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
+    
     private final Item fruitItem;
-    public static final IntProperty DISTANCE;
-
+    
     public LeafCropBlock(Settings settings, Item fruitItem) {
         super(settings);
         this.fruitItem = fruitItem;
     }
-
+    
+    public Integer getAge() {
+        return (Integer)state.get(AGE);
+    }
+    
+    public Integer getDistance() {
+        return (Integer)state.get(DISTANCE);
+    }
+    
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if ((Integer)state.get(AGE) == 0) return SMALL_SHAPE;
-        return (Integer)state.get(AGE) < 2 ? LARGE_SHAPE : super.getOutlineShape(state, world, pos, context);
+        if (getAge() == 0) return SMALL_SHAPE;
+        return (getAge() < 2 ? LARGE_SHAPE : super.getOutlineShape(state, world, pos, context);
     }
 
     public boolean hasRandomTicks(BlockState state) {
-        return (Integer)state.get(AGE) < 2;
+        return getAge() < 2;
     }
 
 
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        int i = (Integer)state.get(AGE);
+        int i = getAge();
         if (i < 2 && random.nextInt(40) == 0 && world.getBaseLightLevel(pos.up(), 0) >= 9) {
             BlockState blockState = (BlockState)state.with(AGE, i + 1);
             world.setBlockState(pos, blockState, 2);
@@ -68,7 +77,7 @@ public class LeafCropBlock extends Block {
     }
 
     protected boolean shouldDecay(BlockState state) {
-        return (Integer)state.get(DISTANCE) == 7;
+        return getDistance() == 7;
     }
 
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
@@ -81,7 +90,7 @@ public class LeafCropBlock extends Block {
 
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         int i = getDistanceFromLog(neighborState) + 1;
-        if (i != 1 || (Integer)state.get(DISTANCE) != i) {
+        if (i != 1 || getDistance() != i) {
             world.scheduleBlockTick(pos, this, 1);
         }
 
@@ -89,7 +98,7 @@ public class LeafCropBlock extends Block {
     }
 
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        int i = (Integer)state.get(AGE);
+        int i = getAge();
         boolean bl = i == 2;
         if (i <= 1) return super.onUse(state, world, pos, player, hit);
         int j = 1;
@@ -111,7 +120,7 @@ public class LeafCropBlock extends Block {
     }
 
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        int i = Math.min(2, (Integer)state.get(AGE) + 1);
+        int i = Math.min(2, getAge() + 1);
         world.setBlockState(pos, (BlockState)state.with(AGE, i), 2);
     }
 
@@ -136,14 +145,7 @@ public class LeafCropBlock extends Block {
 
     public static OptionalInt getOptionalDistanceFromLog(BlockState state) {
         if (state.isIn(BlockTags.LOGS)) return OptionalInt.of(0);
-        return state.contains(DISTANCE) ? OptionalInt.of((Integer)state.get(DISTANCE)) : OptionalInt.empty();
+        return state.contains(DISTANCE) ? OptionalInt.of(getDistance()) : OptionalInt.empty();
     }
 
-
-    static {
-        AGE = Properties.AGE_2;
-        DISTANCE = Properties.DISTANCE_1_7;
-        SMALL_SHAPE = Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
-        LARGE_SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
-    }
 }
