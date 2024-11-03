@@ -44,11 +44,8 @@ public class LeafCropBlock extends Block {
     }
 
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if ((Integer)state.get(AGE) == 0) {
-            return SMALL_SHAPE;
-        } else {
-            return (Integer)state.get(AGE) < 2 ? LARGE_SHAPE : super.getOutlineShape(state, world, pos, context);
-        }
+        if ((Integer)state.get(AGE) == 0) return SMALL_SHAPE;
+        return (Integer)state.get(AGE) < 2 ? LARGE_SHAPE : super.getOutlineShape(state, world, pos, context);
     }
 
     public boolean hasRandomTicks(BlockState state) {
@@ -94,17 +91,14 @@ public class LeafCropBlock extends Block {
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         int i = (Integer)state.get(AGE);
         boolean bl = i == 2;
-        if (i > 1) {
-            int j = 1;
-            dropStack(world, pos, new ItemStack(fruitItem, j ));
-            world.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
-            BlockState blockState = (BlockState)state.with(AGE, 1);
-            world.setBlockState(pos, blockState, 2);
-            world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, blockState));
-            return ActionResult.success(world.isClient);
-        } else {
-            return super.onUse(state, world, pos, player, hit);
-        }
+        if (i <= 1) return super.onUse(state, world, pos, player, hit);
+        int j = 1;
+        dropStack(world, pos, new ItemStack(fruitItem, j ));
+        world.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+        BlockState blockState = (BlockState)state.with(AGE, 1);
+        world.setBlockState(pos, blockState, 2);
+        world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, blockState));
+        return ActionResult.success(world.isClient);
     }
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
@@ -141,11 +135,8 @@ public class LeafCropBlock extends Block {
     }
 
     public static OptionalInt getOptionalDistanceFromLog(BlockState state) {
-        if (state.isIn(BlockTags.LOGS)) {
-            return OptionalInt.of(0);
-        } else {
-            return state.contains(DISTANCE) ? OptionalInt.of((Integer)state.get(DISTANCE)) : OptionalInt.empty();
-        }
+        if (state.isIn(BlockTags.LOGS)) return OptionalInt.of(0);
+        return state.contains(DISTANCE) ? OptionalInt.of((Integer)state.get(DISTANCE)) : OptionalInt.empty();
     }
 
 
