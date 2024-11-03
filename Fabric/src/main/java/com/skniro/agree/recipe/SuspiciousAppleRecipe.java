@@ -26,14 +26,14 @@ extends SpecialCraftingRecipe {
     public boolean matches(CraftingRecipeInput craftingRecipeInput, World world) {
         boolean bl = false;
         boolean bl2 = false;
-        for (int i = 0; i < craftingRecipeInput.getSize(); ++i) {
+        for (int i = 0; i < craftingRecipeInput.getSize() && (bl || bl2); ++i) {
             ItemStack itemStack = craftingRecipeInput.getStackInSlot(i);
             if (itemStack.isEmpty()) continue;
-            if (itemStack.isIn(ItemTags.SMALL_FLOWERS) && !bl) {
+            if (!bl && itemStack.isIn(ItemTags.SMALL_FLOWERS)) {
                 bl = true;
                 continue;
             }
-            if (itemStack.isOf(Items.APPLE) && !bl2) {
+            if (!bl2 && itemStack.isOf(Items.APPLE)) {
                 bl2 = true;
                 continue;
             }
